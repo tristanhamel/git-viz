@@ -6,9 +6,7 @@ import { HttpModule } from '@angular/http';
 import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
 // import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
-import { rootReducer } from './reducers';
-
-interface IAppState { /* ... */ }
+import { rootReducer, IAppState } from './reducers';
 
 import { AppComponent } from './app.component';
 
@@ -26,7 +24,7 @@ import { AppComponent } from './app.component';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(ngRedux: NgRedux<IAppState>, devTools:DevToolsExtension) {
+  constructor(ngRedux: NgRedux<{}>, devTools:DevToolsExtension) {
     ngRedux.configureStore(rootReducer, {}, [ thunk ], [ devTools.enhancer() ]);
   }
 }
