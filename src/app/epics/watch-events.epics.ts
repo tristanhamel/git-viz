@@ -13,14 +13,14 @@ import * as urls from '../constants/urls';
 // import { IAppState } from '../reducers/index'
 
 @Injectable()
-export class RepositoriesEpics {
+export class WatchEventsEpics {
   constructor(private http: Http) {}
 
-  get = (action$: ActionsObservable<any>) => {
+  get = (action$) => {
     return action$.ofType(actions.WATCH_EVENTS_GET)
       .mergeMap( ({payload}) =>
         this.http.get(`${urls.users}/${payload}/events`)
-          .map(response => ({type: actions.WATCH_EVENTS_GET_SUCCESS, payload: response}))
+          .map(response => ({type: actions.WATCH_EVENTS_GET_SUCCESS, payload: response.json()}))
       );
   }
 }

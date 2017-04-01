@@ -1,0 +1,13 @@
+
+<button (click)="getRepos()">
+  Get repos
+</button>
+<table>
+  <th>name</th><th>id</th>
+  <tr *ngFor="let event of $events | async">
+    <td>{{event.repo.name}}</td>
+    <td>{{event.repo.id}}</td>
+  </tr>
+</table>
+
+<!--<div>{{$repositories | async | json}}</div>-->

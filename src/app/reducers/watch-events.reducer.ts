@@ -25,6 +25,7 @@ export const watchEvents = (state: IWatchEvents = initialState, {type, payload})
       return Object.assign({}, state, {isLoading: true, error: null});
 
     case actions.WATCH_EVENTS_GET_SUCCESS:
+      console.log(payload);
       const events = payload.filter(event => event.type === 'WatchEvent');
       const ids = events.map(item => item.id);
       const filtered = state.data.filter(item => ids.indexOf(item.id) === -1 );
