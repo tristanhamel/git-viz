@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { RepositoriesComponent } from './components/repositories/repositories.component';
 import { WatchEventsActions } from './actions/watch-events.actions';
 import { WatchEventsEpics } from './epics/watch-events.epics';
+import { RepositoriesEpics } from './epics/repositories.epics';
 
 @NgModule({
   declarations: [
@@ -26,14 +27,20 @@ import { WatchEventsEpics } from './epics/watch-events.epics';
   ],
   providers: [
     WatchEventsActions,
-    WatchEventsEpics
+    WatchEventsEpics,
+    RepositoriesEpics
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(private ngRedux: NgRedux<{}>, devTools:DevToolsExtension, private epics: WatchEventsEpics) {
+  constructor(private ngRedux: NgRedux<{}>,
+              devTools:DevToolsExtension,
+              private watchEvents: WatchEventsEpics,
+              private repositories: RepositoriesEpics
+  ) {
     const epicsMiddleware = [
-      createEpicMiddleware(this.epics.get)
+      createEpicMiddleware(this.watchEvents.get),
+      createEpicMiddleware(this.repositories.getDetails)
     ];
     ngRedux.configureStore(rootReducer, {}, epicsMiddleware, [ devTools.enhancer() ]);
   }
