@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
 import { select } from '@angular-redux/store';
 import { WatchEventsActions } from '../../actions/watch-events.actions';
 
@@ -18,7 +19,7 @@ export class RepositoriesComponent implements OnInit {
   constructor(private watchEventsActions: WatchEventsActions) { }
 
   ngOnInit() {
-  }
+  };
 
   getRepos() {
     this.watchEventsActions.get();

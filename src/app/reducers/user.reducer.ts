@@ -5,13 +5,23 @@ export interface IUser {
 }
 
 const initialState = {
-  userName: 'tristanhamel'
+  userName: 'tristanhamel',
+  token: null
 };
 
 export const user = (state: IUser = initialState, {type, payload}) => {
   switch (type) {
-    case actions.SET_USER:
-      return payload;
+    case actions.SET_USER_NAME:
+      return {
+        userName: payload,
+        token: null
+      };
+
+    case actions.SET_USER_TOKEN:
+      return {
+        userName: state.userName,
+        token: payload
+      };
 
     default:
       return state;

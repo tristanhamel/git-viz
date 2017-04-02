@@ -1,4 +1,5 @@
-export const SET_USER = 'SET_USER';
+export const SET_USER_NAME = 'SET_USER_NAME';
+export const SET_USER_TOKEN = 'SET_USER_TOKEN';
 
 export const WATCH_EVENTS_GET = 'WATCH_EVENTS_GET';
 export const WATCH_EVENTS_GET_SUCCESS = 'WATCH_EVENTS_GET_SUCCESS';

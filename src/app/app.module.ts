@@ -5,8 +5,9 @@ import { HttpModule } from '@angular/http';
 
 import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
 import { createEpicMiddleware } from 'redux-observable';
-import thunk from 'redux-thunk';
 import { rootReducer, IAppState } from './reducers';
+
+import { GhAuthModule } from './modules/gh-auth/gh-auth.module';
 
 import { AppComponent } from './app.component';
 import { RepositoriesComponent } from './components/repositories/repositories.component';
@@ -23,9 +24,12 @@ import { RepositoriesEpics } from './epics/repositories.epics';
     BrowserModule,
     FormsModule,
     HttpModule,
-    NgReduxModule
+    NgReduxModule,
+
+    GhAuthModule
   ],
   providers: [
+
     WatchEventsActions,
     WatchEventsEpics,
     RepositoriesEpics
