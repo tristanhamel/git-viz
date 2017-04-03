@@ -4,7 +4,7 @@ import { UserActions } from '../../../actions/user.actions';
 import { IUser } from '../../../reducers/user.reducer';
 
 @Component({
-  selector: 'user-auth',
+  selector: 'gv-user-auth',
   templateUrl: './user-auth.component.html',
   styleUrls: ['./user-auth.component.scss']
 })
@@ -21,10 +21,10 @@ export class UserAuthComponent implements OnInit {
       user => this.user = user
     );
 
-    const query= window.location.search;
+    const query = window.location.search;
 
-    //if we got a query string, try to extract the 'code' param sent by github
-    if(query) {
+    // if we got a query string, try to extract the 'code' param sent by github
+    if (query) {
       const code = query.split('code=')[1] || null;
 
       if(code) {
@@ -35,13 +35,13 @@ export class UserAuthComponent implements OnInit {
     }
   }
 
-  connectAccount(){
+  connectAccount() {
     const client_id = '47185db03eb31096ab32';
     // redirect to github for authentication
     window.location.href = `https://github.com/login/oauth/authorize?client_id=${client_id}`;
   }
 
-  reset(){
+  reset() {
 
   }
 }

@@ -11,4 +11,4 @@ import { UserAuthComponent } from './user-auth/user-auth.component';
     UserAuthComponent
   ]
 })
-export class GhAuthModule { }
+export class GvAuthModule { }
