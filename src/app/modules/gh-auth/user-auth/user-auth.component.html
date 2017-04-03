@@ -1,3 +1,21 @@
-<button (click)="connectAccount()">
+<button (click)="connectAccount()"
+        *ngIf="!user.token">
   Connect with Github
 </button>
+
+<span *ngIf="user.isLoading"> Connecting...</span>
+
+<div *ngIf="user.token">
+  You are connected via GitHub as
+    <a [attr.href]="'https://github.com/' + user.userName"
+       target="_blank">
+      {{user.userName}}
+    </a>.
+  If you are not {{user.userName}},
+  <a (click)="reset()">
+    click here
+  </a>.
+</div>
+<p *ngIf="user.error">
+  Something went wrong while trying to authenticate you. Please try again.
+</p>

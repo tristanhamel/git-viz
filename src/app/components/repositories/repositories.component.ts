@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
 import { select } from '@angular-redux/store';
 import { WatchEventsActions } from '../../actions/watch-events.actions';
 
@@ -9,10 +8,6 @@ import { WatchEventsActions } from '../../actions/watch-events.actions';
   styleUrls: ['./repositories.component.scss']
 })
 export class RepositoriesComponent implements OnInit {
-  // @select(collection => collection
-  //   .flatMap()
-  //   .map(item => ({name: item.repo.name, id: item.repo.id})
-  // )) $repositories;
 
   @select(['watchEvents', 'data']) $events;
 

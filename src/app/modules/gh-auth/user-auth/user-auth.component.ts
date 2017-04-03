@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { select } from '@angular-redux/store';
+import { UserActions } from '../../../actions/user.actions';
+import { IUser } from '../../../reducers/user.reducer';
 
 @Component({
   selector: 'user-auth',
@@ -8,29 +10,38 @@ import { Http } from '@angular/http';
 })
 export class UserAuthComponent implements OnInit {
 
-  query: string;
+  @select(['user']) $user;
 
-  constructor(private http: Http) { }
+  user: IUser;
+
+  constructor(private userActions: UserActions) { }
 
   ngOnInit() {
-    this.query= window.location.search;
-    console.log(this.query);
+    this.$user.subscribe(
+      user => this.user = user
+    );
+
+    const query= window.location.search;
 
     //if we got a query string, try to extract the 'code' param sent by github
-    if(this.query) {
-      const code = this.query.split('code=')[1] || null;
+    if(query) {
+      const code = query.split('code=')[1] || null;
 
       if(code) {
         const url = `${window.location.origin}/api/auth?code=${code}`;
-        this.http.post(url, {})
-          .subscribe(response => console.log(response.json()));
-        //TODO: save token in store and clear url params
+        this.userActions.getToken(url);
+        window.history.replaceState({}, null, window.location.origin);
       }
     }
   }
 
   connectAccount(){
     const client_id = '47185db03eb31096ab32';
+    // redirect to github for authentication
     window.location.href = `https://github.com/login/oauth/authorize?client_id=${client_id}`;
+  }
+
+  reset(){
+
   }
 }
