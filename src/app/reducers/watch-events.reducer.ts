@@ -1,7 +1,7 @@
 import * as actions from '../constants/ActionTypes';
 
 export interface IEventObject {
-  id: string
+  id: string;
 }
 
 export interface IWatchEvents {

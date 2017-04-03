@@ -27,7 +27,7 @@ export class UserAuthComponent implements OnInit {
     if (query) {
       const code = query.split('code=')[1] || null;
 
-      if(code) {
+      if (code) {
         const url = `${window.location.origin}/api/auth?code=${code}`;
         this.userActions.getToken(url);
         window.history.replaceState({}, null, window.location.origin);
@@ -42,6 +42,6 @@ export class UserAuthComponent implements OnInit {
   }
 
   reset() {
-
+    this.userActions.reset();
   }
 }
