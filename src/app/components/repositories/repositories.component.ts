@@ -3,7 +3,7 @@ import { select } from '@angular-redux/store';
 import { WatchEventsActions } from '../../actions/watch-events.actions';
 
 @Component({
-  selector: 'repositories',
+  selector: 'gv-repositories',
   templateUrl: './repositories.component.html',
   styleUrls: ['./repositories.component.scss']
 })
