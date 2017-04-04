@@ -33,7 +33,8 @@ export class StoreModule {
    const epicsMiddleware = [
      createEpicMiddleware(this.watchEvents.get),
      createEpicMiddleware(this.repositories.getDetails),
-     createEpicMiddleware(this.users.getToken)
+     createEpicMiddleware(this.users.getToken),
+     createEpicMiddleware(this.users.getUserInfo)
    ];
 
    const middleWare = [

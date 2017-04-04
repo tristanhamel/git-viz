@@ -5,13 +5,15 @@ export interface IUser {
   token: string;
   isLoading: boolean;
   error: false;
+  userInfo: {};
 }
 
 const initialState: IUser = {
   userName: 'tristanhamel',
   token: null,
   isLoading: false,
-  error: false
+  error: false,
+  userInfo: null
 };
 
 export const user = (state: IUser = initialState, {type, payload}) => {
@@ -21,7 +23,8 @@ export const user = (state: IUser = initialState, {type, payload}) => {
         userName: payload,
         token: null,
         isLoading: false,
-        error: false
+        error: false,
+        userInfo: null
       };
 
     case actions.USER_TOKEN_REQUEST:
@@ -29,21 +32,26 @@ export const user = (state: IUser = initialState, {type, payload}) => {
 
     case actions.USER_TOKEN_RECEIVE:
       return {
-        userName: state.userName,
+        userName: null,
         token: payload,
         isLoading: false,
-        error: false
+        error: false,
+        userInfo: null
       };
 
     case actions.USER_TOKEN_ERROR:
       return Object.assign({}, state, {isLoading: false, error: true});
+
+    case actions.USER_INFO_RECEIVE:
+      return Object.assign({}, state, {userName: payload.login, userInfo: payload});
 
     case actions.USER_RESET:
       return {
         userName: 'tristanhamel',
         token: null,
         isLoading: false,
-        error: false
+        error: false,
+        userInfo: null
       };
 
     default:
