@@ -12,9 +12,8 @@ export class UsersEpics {
   getToken = (action$) => {
     return action$.ofType(actions.USER_TOKEN_REQUEST)
       .mergeMap( ({payload}) => {
-        console.log(payload);
         return this.http.post(payload, {})
-          .map(response => ({type: actions.USER_TOKEN_RECEIVE, payload: response.json().access_token}))
-      })
-  };
+          .map(response => ({type: actions.USER_TOKEN_RECEIVE, payload: response.json().access_token}));
+      });
+  }
 }
