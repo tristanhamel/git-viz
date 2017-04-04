@@ -14,6 +14,13 @@ export class RepositoriesComponent implements OnInit {
   constructor(private watchEventsActions: WatchEventsActions) { }
 
   ngOnInit() {
+    // if we got no events stored, initiate request
+    this.$events
+      .subscribe(events => {
+        if (!events || !events.length) {
+          this.watchEventsActions.get();
+        }
+      });
   };
 
   getRepos() {

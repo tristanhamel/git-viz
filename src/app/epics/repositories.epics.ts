@@ -17,14 +17,14 @@ export class RepositoriesEpics {
       .mergeMap( ({payload}) => {
         const requests = payload
           // make requests only for repos not already in store
-          .filter(event => !store.repositories.some(repo => repo.id === event.repo.id))
+          .filter(event => !store.getState().repositories.data.some(repo => repo.id === event.repo.id))
           .map(event => {
-            this.http.get(event.repo.url).map(resp => resp.json());
+            return this.http.get(event.repo.url).map(resp => resp.json());
           });
 
         return Observable.forkJoin(requests);
       })
-      .map((repos) => {
+      .map(repos => {
         return {type: actions.REPOSITORIES_SUCCESS, payload: repos};
       });
   }

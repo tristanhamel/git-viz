@@ -1,15 +1,22 @@
 import { NgModule } from '@angular/core';
 import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
 import persistState from 'redux-localstorage';
+import { createEpicMiddleware } from 'redux-observable';
 
 import { actions } from './actions';
-import { epics, epicsMiddleware } from './epics';
+
 import { rootReducer } from './reducers';
+
+import { WatchEventsEpics } from './epics/watch-events.epics';
+import { RepositoriesEpics } from './epics/repositories.epics';
+import { UsersEpics } from './epics/user.epics';
 
 @NgModule({
   providers: [
     ...actions,
-    ...epics
+    WatchEventsEpics,
+    RepositoriesEpics,
+    UsersEpics
   ],
   imports: [
     NgReduxModule
@@ -17,8 +24,17 @@ import { rootReducer } from './reducers';
 })
 export class StoreModule {
  constructor(private ngRedux: NgRedux<{}>,
-             private devToolsExtension: DevToolsExtension) {
+             private devToolsExtension: DevToolsExtension,
+             private watchEvents: WatchEventsEpics,
+             private repositories: RepositoriesEpics,
+             private users: UsersEpics) {
    const initialState = {};
+
+   const epicsMiddleware = [
+     createEpicMiddleware(this.watchEvents.get),
+     createEpicMiddleware(this.repositories.getDetails),
+     createEpicMiddleware(this.users.getToken)
+   ];
 
    const middleWare = [
      ...epicsMiddleware
@@ -49,7 +65,7 @@ export class StoreModule {
    };
 
    const enhancers = [
-     persistState(persistStateConfig),
+     persistState(paths, persistStateConfig),
      this.devToolsExtension.enhancer()
    ];
 
