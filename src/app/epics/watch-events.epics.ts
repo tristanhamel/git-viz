@@ -16,10 +16,7 @@ export class WatchEventsEpics {
     return action$.ofType(actions.WATCH_EVENTS_GET)
       .mergeMap( ({payload}) =>
         this.http.get(`${urls.users}/${payload}/events`)
-          .map(response => {
-            const payload = response.json().filter(event => event.type === 'WatchEvent');
-            return {type: actions.WATCH_EVENTS_GET_SUCCESS, payload };
-          })
+          .map(response => ({type: actions.WATCH_EVENTS_GET_SUCCESS, payload: response.json() }))
       );
-  };
+  }
 }

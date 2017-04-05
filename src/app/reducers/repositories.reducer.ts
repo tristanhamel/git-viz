@@ -1,8 +1,12 @@
 import * as actions from '../constants/ActionTypes';
 
+export interface IRepository {
+  id: string;
+}
+
 export interface IRepositories {
   lastUpdated: number;
-  data: Array<{}>;
+  data: Array<IRepository>;
 }
 
 const initialState: IRepositories = {

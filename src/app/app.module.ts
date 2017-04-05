@@ -8,6 +8,7 @@ import { StoreModule } from './store.module';
 import { GvAuthModule } from './modules/gv-auth/gv-auth.module';
 
 import { httpFactory } from './services/http-factory';
+import { ReposSelector } from './services/repos.service';
 
 import { AppComponent } from './app.component';
 import { RepositoriesComponent } from './components/repositories/repositories.component';
@@ -26,6 +27,7 @@ import { RepositoriesComponent } from './components/repositories/repositories.co
     GvAuthModule
   ],
   providers: [
+    ReposSelector,
     {
       provide: Http,
       useFactory: httpFactory,
