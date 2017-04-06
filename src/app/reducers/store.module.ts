@@ -3,13 +3,13 @@ import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store'
 import persistState from 'redux-localstorage';
 import { createEpicMiddleware } from 'redux-observable';
 
-import { actions } from './actions';
+import { actions } from '../actions';
 
-import { rootReducer } from './reducers';
+import { rootReducer } from './';
 
-import { WatchEventsEpics } from './epics/watch-events.epics';
-import { RepositoriesEpics } from './epics/repositories.epics';
-import { UsersEpics } from './epics/user.epics';
+import { WatchEventsEpics } from '../epics/watch-events.epics';
+import { RepositoriesEpics } from '../epics/repositories.epics';
+import { UsersEpics } from '../epics/user.epics';
 
 @NgModule({
   providers: [

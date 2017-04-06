@@ -5,9 +5,48 @@ $gv-yellow: rgba(224, 203, 168, 1);
 $gv-red: rgba(255, 101, 66, 1);
 $gv-dark-violet: rgba(86, 65, 84, 1);
 
+$gv-violet-light: lighten($gv-violet, 25%);
+$gv-violet-lighter: lighten($gv-violet, 40%);
+
 $gv-black: #111;
 $gv-dark-gray: #333;
 $gv-medium-gray: #888;
 $gv-light-gray: #bbb;
 $gv-pale-gray: #ddd;
 $gv-white: #fff;
+
+/* typography */
+
+$gv-font-x-small: 10px;
+$gv-font-small: 12px;
+$gv-font-medium: 16px;
+$gv-font-large: 20px;
+$gv-font-x-large: 36px;
+
+
+/* break points */
+
+$breakpoint-medium: 480px;
+$breakpoint-large: 768px;
+$breakpoint-x-large: 992px;
+
+$breakpoints: (
+        'medium': (min-width: $breakpoint-medium),
+        'large': (min-width: $breakpoint-large),
+        'x-large': (min-width: $breakpoint-x-large)
+);
+
+@mixin respond-to($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(type-of($raw-query) == 'string', unquote($raw-query), inspect($raw-query));
+
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$breakpoint}`. '
+         + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}

@@ -1,0 +1,9 @@
+@import "vars";
+
+.small {
+  font-size: $gv-font-x-small;
+
+  @include respond-to('medium') {
+    font-size: $gv-font-small;
+  }
+}

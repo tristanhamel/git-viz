@@ -1,5 +1,5 @@
 <button (click)="connectAccount()"
-        *ngIf="!user.token">
+        *ngIf="!user.token && !user.isLoading">
   Connect with Github
 </button>
 
@@ -7,12 +7,14 @@
 
 <div *ngIf="user.token">
   You are connected via GitHub as
-    <a [attr.href]="'https://github.com/' + user.userName"
+    <a class="light-a"
+       [attr.href]="'https://github.com/' + user.userName"
        target="_blank">
       {{user.userName}}
     </a>.
   If you are not {{user.userName}},
-  <a (click)="reset()">
+  <a class="light-a"
+     (click)="reset()">
     click here
   </a>.
 </div>

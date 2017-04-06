@@ -1,5 +1,88 @@
-/* You can add global styles to this file, and also import other style files */
+@import "vars";
 
 body {
   font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: $gv-font-small;
+  line-height: $gv-font-small;
+  margin: 0;
+
+  @include respond-to('medium'){
+    font-size: $gv-font-medium;
+    line-height: $gv-font-medium;
+  }
+}
+
+h1 {
+  font-size: $gv-font-large;
+  line-height: $gv-font-large;
+  margin: 0.5rem 0;
+
+  @include respond-to('medium'){
+    font-size: $gv-font-x-large;
+    line-height: $gv-font-x-large;
+    margin: 1rem 0;
+  }
+}
+
+h2 {
+  font-size: $gv-font-medium;
+  line-height: $gv-font-medium;
+  font-weight: 400;
+  margin: 0.3rem 0;
+
+  @include respond-to('medium'){
+    font-size: $gv-font-large;
+    line-height: $gv-font-large;
+    margin: 0.8rem 0;
+  }
+}
+
+a{
+  cursor: pointer;
+  text-decoration: underline;
+
+  &:not(.light-a) {
+    color: $gv-violet;
+
+    &:active {
+      color: $gv-violet-light;
+    }
+
+    &:visited {
+      color: $gv-violet;
+    }
+
+  }
+}
+
+// special class for a on dark backgrounds
+.light-a {
+  color: $gv-violet-lighter;
+
+  &:active, &:visited {
+    color: $gv-violet-lighter;
+  }
+}
+
+button {
+  background: $gv-violet;
+  cursor: pointer;
+  color: $gv-white;
+  border: 2px solid white;
+  border-radius: 3px;
+}
+
+.container {
+  padding: 0.5rem;
+
+  @include respond-to('medium'){
+    padding: 1rem;
+  }
+}
+
+
+.centered {
+  max-width: $breakpoint-x-large;
+  width: 100%;
 }
