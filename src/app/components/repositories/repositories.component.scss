@@ -1,0 +1,35 @@
+@import
+  "../../../vars",
+"../../../styles";
+
+.gv-repositories {
+
+}
+
+.gv-repositories-table {
+  @extend .centered;
+
+  border-collapse: collapse;
+  text-align: left;
+
+  td, th {
+    padding: 0.5rem;
+
+    @include respond-to('medium') {
+      padding: 1rem;
+    }
+  }
+}
+
+.gv-repositories-head {
+  border-bottom: 1px solid $gv-violet;
+}
+
+.gv-repositories-row {
+  border-bottom: 1px solid $gv-light-gray;
+  color: $gv-dark-gray;
+
+  &:hover {
+    background-color: $gv-pale-gray;
+  }
+}
