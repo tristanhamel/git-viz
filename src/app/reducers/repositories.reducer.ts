@@ -2,6 +2,8 @@ import * as actions from '../constants/ActionTypes';
 
 export interface IRepository {
   id: string;
+  stargazers_count: number;
+  language: string;
 }
 
 export interface IRepositories {

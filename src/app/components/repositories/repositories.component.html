@@ -1,7 +1,12 @@
 <table>
-  <th>name</th><th>id</th>
+  <tr>
+    <th>name</th>
+    <th>stars</th>
+    <th>language</th>
+  </tr>
   <tr *ngFor="let repo of $repos | async">
     <td>{{repo.name}}</td>
-    <td>{{repo.id}}</td>
+    <td>{{repo.stargazers_count}}</td>
+    <td>{{repo.language}}</td>
   </tr>
 </table>

@@ -20,7 +20,6 @@ export class ReposSelector {
         const ids = events
           .filter(event => event.type === 'WatchEvent')
           .map(event => event.repo.id);
-        console.log(ids);
 
         return repos.filter(repo => ids.indexOf(repo.id) !== -1);
       });
